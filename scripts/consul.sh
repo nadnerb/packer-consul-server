@@ -16,11 +16,11 @@ sudo mkdir -p /mnt/consul
 sudo mkdir -p /etc/service
 
 echo "Fetching Consul template..."
-curl -L -o consul_template.tar.gz https://github.com/hashicorp/consul-template/releases/download/v${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.tar.gz
+curl -L -o consul_template.zip https://github.com/hashicorp/consul-template/releases/download/v${CONSUL_TEMPLATE_VERSION}/consul_template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip
 
 echo "installing Consul template..."
-tar xfz consul_template.tar.gz
-sudo mv consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64 /opt/consul-template
+unzip consul_template.zip >/dev/null
+sudo mv consul-template /opt/consul-template
 
 # Install web ui
 echo "Installing UI"
