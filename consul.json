@@ -2,24 +2,31 @@
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
+    "aws_security_token": "",
     "aws_region": "ap-southeast-2",
     "aws_build_regions" : "ap-southeast-2",
     "aws_source_ami": "ami-69631053",
     "aws_instance_type": "t2.micro",
+    "aws_vpc_id": "",
+    "aws_subnet_id": "",
     "ami_name_prefix": "consul",
-    "consul_version": "0.5.2",
-    "consul_template_version": "0.11.0"
+    "consul_version": "0.6.0",
+    "consul_template_version": "0.11.1"
   },
   "builders": [{
     "type": "amazon-ebs",
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
+    "token": "{{user `aws_security_token`}}",
     "region": "{{user `aws_region`}}",
     "source_ami": "{{user `aws_source_ami`}}",
     "instance_type": "{{user `aws_instance_type`}}",
-    "ssh_username": "ubuntu",
+    "ssh_username": "ec2-user",
+    "vpc_id": "{{user `aws_vpc_id`}}",
+    "subnet_id": "{{user `aws_subnet_id`}}",
     "ami_name": "{{user `ami_name_prefix`}}-{{timestamp}}",
-    "ami_regions": "{{user `aws_build_regions`}}"
+    "ami_regions": "{{user `aws_build_regions`}}",
+    "ssh_pty": "true"
   }],
   "provisioners": [
     {
